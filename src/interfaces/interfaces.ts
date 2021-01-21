@@ -7,3 +7,12 @@ export interface LoginValuesInterface {
     email: string,
     password: string,
 }
+
+export interface ActionAuthReducerInterface{
+    type: string,
+    payload: {
+        uid: string,
+        username: string
+    }
+}
+

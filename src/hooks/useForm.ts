@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 
 export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmit: Function  ) => {
     
@@ -9,10 +9,8 @@ export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmi
     useEffect(() => {
         if( Object.keys(errors).length === 0 && submit ){
             fnSubmit();
-        } else{
-            console.log( errors );
         }
-    }, [ errors, submit ])
+    }, [ errors, submit, fnSubmit ])
 
     const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setformValues( ( state: any ) => ({

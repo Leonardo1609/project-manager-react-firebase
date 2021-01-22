@@ -6,6 +6,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { login } from '../actions/authActions';
+import { startGetProjects } from '../actions/projectAction';
 import { app } from '../firebase/config';
 import { Home } from '../pages/Home';
 import { AuthRoute } from './AuthRoute';
@@ -20,6 +21,7 @@ export const AppRoute = () => {
         app.auth().onAuthStateChanged( user => {
             if( user?.uid && user?.displayName ){
                 dispatch( login( user.uid, user.displayName ) );
+                dispatch( startGetProjects( user.uid ));
                 setIsLogin( true )
             } else{
                 setIsLogin( false )

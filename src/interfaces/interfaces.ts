@@ -8,7 +8,7 @@ export interface LoginValuesInterface {
     password: string,
 }
 
-export interface ActionAuthReducerInterface{
+export interface ActionAuthReducerInterface {
     type: string,
     payload: {
         uid: string,
@@ -16,3 +16,13 @@ export interface ActionAuthReducerInterface{
     }
 }
 
+export interface ActionProjectsReducerInterface {
+    type: string,
+    payload: ProjectInterface
+}
+
+export interface ProjectInterface {
+    id: string,
+    name: string,
+    managerUid: string
+}

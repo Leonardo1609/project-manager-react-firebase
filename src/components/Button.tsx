@@ -3,7 +3,7 @@ import React from 'react'
 interface ButtonInterface{
     value: string,
     type: 'button' | 'submit',
-    fn?: () => {},
+    fn?: any,
     classes: string
 }
 

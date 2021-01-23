@@ -7,7 +7,7 @@ import { TasksProject } from '../components/TasksProject';
 export const Home = ( props: any ) => {
     const dispatch = useDispatch();
     return (
-        <div className="flex">
+        <div className="flex h-full">
             <AsideProjects/>
             <TasksProject />
         </div>

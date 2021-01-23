@@ -1,7 +1,10 @@
+import { db } from "../firebase/config";
+
 interface ProjectForm {
     name: string
 }
 export const projectFormValidation = ({ name }: ProjectForm) => {
+
     let errors = {}
     if( name.length === 0 ){
         errors = {

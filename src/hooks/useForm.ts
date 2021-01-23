@@ -10,7 +10,7 @@ export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmi
         if( Object.keys(errors).length === 0 && submit ){
             fnSubmit();
         }
-    }, [ errors, submit, fnSubmit ])
+    }, [ errors, submit ])
 
     const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setformValues( ( state: any ) => ({
@@ -29,6 +29,7 @@ export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmi
         formValues,
         handleChange,
         handleSubmit,
+        setformValues,
         errors
     }
 }

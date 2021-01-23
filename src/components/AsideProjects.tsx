@@ -10,9 +10,9 @@ export const AsideProjects = () => {
     const showHideForm = () => {
         setShowForm( !showForm )
     }
-
+      
     return (
-        <aside className="w-1/4 h-screen bg-gray-800 py-10 px-10">
+        <aside className="w-1/4 h-full bg-gray-800 py-10 px-10">
             <div className="flex flex-wrap flex-col xl:flex-row justify-between">
                 <h1 className="text-2xl text-gray-200 font-bold text-center xl:text-left flex-1">Projects</h1>  
                 <Button 
@@ -24,8 +24,11 @@ export const AsideProjects = () => {
             </div>
             <FormProject 
                 showForm = { showForm }
+                setShowForm = { setShowForm }
             />
-            <ProjectList />
+            <ProjectList 
+                showForm = { showForm } 
+            />
         </aside>
     )
 }

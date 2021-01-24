@@ -21,7 +21,7 @@ export const AppRoute = () => {
         app.auth().onAuthStateChanged( user => {
             if( user?.uid && user?.displayName ){
                 dispatch( login( user.uid, user.displayName ) );
-                dispatch( startGetProjects( user.uid ));
+                dispatch( startGetProjects());
                 setIsLogin( true )
             } else{
                 setIsLogin( false )

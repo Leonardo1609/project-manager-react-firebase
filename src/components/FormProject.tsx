@@ -24,8 +24,6 @@ export const FormProject = ({ showForm, setShowForm, setActionForm, action }: Fo
         name: ''
     }
 
-    const authId = useSelector( ( state: any ) => state.auth.uid );
-
     const { formValues, handleChange, handleSubmit, errors, reset } = useForm( initialState, projectFormValidation, saveProject );
 
     useEffect(() => {
@@ -38,8 +36,8 @@ export const FormProject = ({ showForm, setShowForm, setActionForm, action }: Fo
     function saveProject() {
 
         ( action === 'edit' ) 
-            ? dispatch( startModifyProject( activeProject.id, formValues.name, authId ))
-            : dispatch( startCreateProject( formValues.name, authId ) );
+            ? dispatch( startModifyProject( formValues.name ))
+            : dispatch( startCreateProject( formValues.name ) );
 
         setActionForm('');
         reset( initialState );

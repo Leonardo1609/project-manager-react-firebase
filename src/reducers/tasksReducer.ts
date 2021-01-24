@@ -11,7 +11,7 @@ const initialState: TaskReducerInterface= {
     activeTask: null
 }
 
-export const taskReducer = (state = initialState, { type, payload }: ActionTasksReducerInterface) => {
+export const taskReducer = (state = initialState, { type, payload }: ActionTasksReducerInterface ) => {
     switch (type) {
 
     case types.addTask:
@@ -26,12 +26,25 @@ export const taskReducer = (state = initialState, { type, payload }: ActionTasks
             tasks: payload
         }
 
+    case types.updateTask:
+        return {
+            ...state,
+            tasks: state.tasks.map( task => 
+                task.id === payload.id ? payload : task
+            )
+        }
+
     case types.setActiveTask:
         return {
             ...state,
             activeTask: payload
         }
 
+    case types.deleteTask:
+        return {
+            ...state,
+            tasks: state.tasks.filter( ( task: any ) => task.id !== payload )
+        }
     default:
         return state
     }

@@ -1,3 +1,5 @@
+import { TypedUseSelectorHook } from "react-redux";
+
 export interface CreateAccountValuesInterface extends LoginValuesInterface {
     username: string,
     confirm: string
@@ -32,7 +34,7 @@ export interface ActionTasksReducerInterface {
     payload: TaskInterface
 }
 export interface TaskInterface {
-    id?: string,
+    id: string,
     name: string,
-    projectId: string
+    culminated: boolean
 }

@@ -7,9 +7,9 @@ export const taskFormValidation = ( values: TaskForm ) => {
 
     const { name } = values;
 
-    if( name.length === 0 ){
+    if( name.length === 0 || name.length > 20 ){
         errors = {
-            name: true
+            name: 'Task field required: 1-20 characters'
         }
     }
 

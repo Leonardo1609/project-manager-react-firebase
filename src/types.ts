@@ -9,6 +9,8 @@ export const types = {
     setActiveProject: '[Project] Active Project',
 
     addTask: '[Task] Add Task',
+    updateTask: '[Task] Update Task',
+    deleteTask: '[Task] Delete Task',
     setTasks: '[Task] Tasks',
     setActiveTask: '[Task] Active Task'
 

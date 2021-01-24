@@ -5,6 +5,7 @@ import projectmanagerimg from '../assets/imgs/project-manager.png';
 import { ProjectInterface } from '../interfaces/interfaces';
 import { FormTask } from './FormTask';
 import { ListTasks } from './ListTask';
+import { ProjectProgressBar } from './ProjectProgressBar';
 
 export const TasksProject = () => {
     const activeProject: ProjectInterface = useSelector((state: any) => state.projects.activeProject)
@@ -28,13 +29,14 @@ export const TasksProject = () => {
                         alt="project-manager"
                     />            
                 :
-                    <>
+                    <div className="w-3/4 md:w-2/4 m-auto">
                         <div className="w-full py-16">
                             <h2 className="text-5xl text-center text-center">Project: <span className="text-gray-600 font-bold">{ activeProject.name }</span></h2>
                         </div>
                         <FormTask />
                         <ListTasks />
-                    </>
+                        <ProjectProgressBar />
+                    </div>
             }
         </div>
     )

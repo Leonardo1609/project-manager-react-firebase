@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { startLogout } from '../actions/authActions';
 import { Button } from './Button'
 import { FormProject } from './FormProject'
 import { ProjectList } from './ProjectList';
@@ -7,6 +9,7 @@ export const AsideProjects = () => {
 
     const [showForm, setShowForm] = useState( false );
     const [actionForm, setActionForm] = useState<string>('');
+    const dispatch = useDispatch();
 
       
     return (
@@ -30,6 +33,12 @@ export const AsideProjects = () => {
                 showForm={ showForm } 
                 setShowForm={ setShowForm }
                 setActionForm={ setActionForm }
+            />
+            <Button 
+                classes="bg-green-500 w-full rounded uppercase py-2 px-5 text-sm font-bold text-gray-200 flex-1 mt-10"
+                type="button"
+                value="Sign Out"
+                fn={ () => dispatch( startLogout() )}
             />
         </aside>
     )

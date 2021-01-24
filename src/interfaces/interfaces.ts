@@ -22,7 +22,17 @@ export interface ActionProjectsReducerInterface {
 }
 
 export interface ProjectInterface {
-    id: string,
+    id?: string,
     name: string,
     managerUid: string
+}
+
+export interface ActionTasksReducerInterface {
+    type: string,
+    payload: TaskInterface
+}
+export interface TaskInterface {
+    id?: string,
+    name: string,
+    projectId: string
 }

@@ -11,7 +11,7 @@ const initialState: ProjectStateInterface = {
     activeProject: null
 }
 
-export default (state = initialState, { type, payload }: ActionProjectsReducerInterface) => {
+export const projectReducer = (state = initialState, { type, payload }: ActionProjectsReducerInterface) => {
     switch (type) {
         case types.setProjects:
             return { 
@@ -23,6 +23,18 @@ export default (state = initialState, { type, payload }: ActionProjectsReducerIn
                 ...state,  
                 projects: [ payload, ...state.projects ]
             }            
+        case types.updateProject:
+            return {
+                ...state,
+                projects: state.projects.map( project => 
+                    project.id === payload.id ? payload : project
+                )
+            }
+        case types.deleteProject:
+            return {
+                ...state,
+                projects: state.projects.filter( ( project: any ) => project.id !== payload )
+            }
         case types.setActiveProject:
             return {
                 ...state,

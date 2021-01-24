@@ -1,31 +1,48 @@
+import React, { useEffect } from 'react'
 import { faTimes } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { startCreateProject } from '../actions/projectAction'
+import { startCreateProject, startModifyProject } from '../actions/projectAction'
 import { useForm } from '../hooks/useForm'
 import { projectFormValidation } from '../validations/projectFormValidation'
 import { Button } from './Button'
 
 interface FormProjectInterface {
     showForm: boolean,
-    setShowForm: Function
+    setShowForm: React.Dispatch<React.SetStateAction<boolean>>,
+    setActionForm: React.Dispatch<React.SetStateAction<string>>,
+    action: string
 }
 
-export const FormProject = ({ showForm, setShowForm }: FormProjectInterface ) => {
+export const FormProject = ({ showForm, setShowForm, setActionForm, action }: FormProjectInterface ) => {
 
     const dispatch = useDispatch();
+
+    const activeProject: any = useSelector( ( state: any ) => state.projects.activeProject );
+
     const initialState = {
         name: ''
     }
 
     const authId = useSelector( ( state: any ) => state.auth.uid );
 
-    const { formValues, handleChange, handleSubmit, errors, setformValues } = useForm( initialState, projectFormValidation, createProject )
+    const { formValues, handleChange, handleSubmit, errors, reset } = useForm( initialState, projectFormValidation, saveProject );
 
-    function createProject() {
-        dispatch( startCreateProject( formValues.name, authId ) );
-        setformValues( initialState );
+    useEffect(() => {
+        if( activeProject && action === 'edit' ){
+            reset({ name: activeProject.name });
+        }
+        // eslint-disable-next-line
+    }, [ activeProject, action ])
+
+    function saveProject() {
+
+        ( action === 'edit' ) 
+            ? dispatch( startModifyProject( activeProject.id, formValues.name, authId ))
+            : dispatch( startCreateProject( formValues.name, authId ) );
+
+        setActionForm('');
+        reset( initialState );
     }
 
     return (
@@ -39,7 +56,11 @@ export const FormProject = ({ showForm, setShowForm }: FormProjectInterface ) =>
                     className="block text-md font-bold text-gray-200"
                 >Project Name:</label>
                 <FontAwesomeIcon 
-                    onClick={ () => setShowForm( false ) }
+                    onClick={ () => { 
+                        setShowForm( false );
+                        setActionForm('');
+                        reset( initialState );
+                    }}
                     className="text-gray-200 cursor-pointer hover:text-green-500"
                     icon={ faTimes } 
                 />
@@ -56,7 +77,7 @@ export const FormProject = ({ showForm, setShowForm }: FormProjectInterface ) =>
             <span className="text-red-600 text-sm">{ errors.name }</span>
             <Button 
                 type="submit"
-                value="Create"
+                value="Save"
                 classes="bg-green-600 rounded py-2 mt-5 text-md text-white font-bold w-full uppercase"
             />
         </form>

@@ -1,5 +1,3 @@
-import { db } from "../firebase/config";
-
 interface ProjectForm {
     name: string
 }

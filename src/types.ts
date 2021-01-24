@@ -3,6 +3,13 @@ export const types = {
     logout: '[Auth] logout',
 
     addProject: '[Project] Add Project',
+    updateProject: '[Project] Update Project',
+    deleteProject: '[Project] Delete Project',
     setProjects: '[Project] Projects',
-    setActiveProject: '[Project] Active Project'
+    setActiveProject: '[Project] Active Project',
+
+    addTask: '[Task] Add Task',
+    setTasks: '[Task] Tasks',
+    setActiveTask: '[Task] Active Task'
+
 }

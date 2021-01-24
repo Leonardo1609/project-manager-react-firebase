@@ -10,7 +10,12 @@ export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmi
         if( Object.keys(errors).length === 0 && submit ){
             fnSubmit();
         }
+        // eslint-disable-next-line
     }, [ errors, submit ])
+
+    const reset = ( newFormState = initialState ) => {
+        setformValues( newFormState );
+    }
 
     const handleChange = ({ target }: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         setformValues( ( state: any ) => ({
@@ -29,7 +34,7 @@ export const useForm = ( initialState: any = {}, fnValidation: Function, fnSubmi
         formValues,
         handleChange,
         handleSubmit,
-        setformValues,
+        reset,
         errors
     }
 }
